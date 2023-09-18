@@ -16,6 +16,7 @@ let contentList = [{
 
     var i = 0;
     var prev;
+    var interval;
 
 const card = document.querySelector("#card");
 const btnBack = document.querySelector("#back");
@@ -52,7 +53,7 @@ document.querySelector("#back").addEventListener("click", function(){
 
 
 function init(){
-    setInterval(function(){
+   interval = setInterval(function(){
         do{i = Math.floor(Math.random()*contentList.length)}while(prev == i);
         prev=i;
         console.log(i);
@@ -62,3 +63,15 @@ function init(){
 
 
 init();
+
+document.querySelectorAll(".arrow").forEach(function(item){
+    item.addEventListener("mouseenter", function(){
+        clearInterval(interval);
+    })
+})
+
+document.querySelectorAll(".arrow").forEach(function(item){
+    item.addEventListener("mouseleave", function(){
+        init();
+    })
+})
